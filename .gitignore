@@ -1,0 +1,26 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+# Ignorar la carpeta de configuración de Visual Studio
+.vs/
+
+# Ignorar carpetas de build
+bin/
+obj/
+
+# Ignorar archivos generados por el sistema
+*.log
+*.tmp
+*.bak
+
+# Ignorar archivos de configuración de usuario de Visual Studio
+*.user
+*.suo
+
+# Ignorar carpetas de paquetes NuGet
+packages/
+
+# Ignorar archivos de configuración de entorno de desarrollo
+.vscode/
+.idea/
