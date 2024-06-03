@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ProductCatalogChallenge.Domain.Entities
 {
-    internal class Inventory
+    public  class Inventory
     {
+        public int InventoryId { get; set; }
+        public int ProductId { get; set; }
+        public int Stock {  get; set; }
+        public Product Product { get; set; }
+
     }
 }
