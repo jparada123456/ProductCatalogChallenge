@@ -9,18 +9,13 @@ using System.Threading.Tasks;
 
 namespace ProductCatalogChallenge.Application.Queries
 {
-    public class GetAllProductsQueryHandler : IQueryHandler<GetAllProductsQuery, IEnumerable<Product>>
+    public class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdQuery, Product>
     {
         private readonly IReadRepository<Product> _productRepository;
 
-        public GetAllProductsQueryHandler(IReadRepository<Product> productRepository)
+        public GetProductByIdQueryHandler(IReadRepository<Product> productRepository)
         {
             _productRepository = productRepository;
-        }
-
-        public async Task<IEnumerable<Product>> HandleAsync(GetAllProductsQuery query)
-        {
-            return await _productRepository.GetAllAsync();
         }
 
         public async Task<Product> HandleAsync(GetProductByIdQuery query)

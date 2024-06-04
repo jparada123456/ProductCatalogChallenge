@@ -27,7 +27,7 @@ namespace ProductCatalogChallenge.Tests.CommandHandlersTests
             };
 
             // Act
-            var result = await handler.Handle(command, CancellationToken.None);
+            var result = await handler.HandleAsync(command);
 
             // Assert
             mockRepo.Verify(repo => repo.AddAsync(It.IsAny<Product>()), Times.Once);

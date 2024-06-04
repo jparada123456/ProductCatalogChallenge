@@ -1,15 +1,11 @@
-﻿using MediatR;
+﻿using ProductCatalogChallenge.Application.Interfaces;
 using ProductCatalogChallenge.Domain.Entities;
+using ProductCatalogChallenge.Domain.Enums;
 using ProductCatalogChallenge.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductCatalogChallenge.Application.Commands
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, int>
+    public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand, int>
     {
         private readonly IWriteRepository<Product> _productRepository;
 
@@ -17,15 +13,15 @@ namespace ProductCatalogChallenge.Application.Commands
         {
             _productRepository = productRepository;
         }
-        public async Task<int> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        public async Task<int> HandleAsync(CreateProductCommand command)
         {
             var product = new Product
             {
-                Name = request.Name,
-                Description = request.Description,
-                Price = request.Price,
-                StatusId = 1,
-                CreatedAt = DateTime.Now,
+                Name = command.Name,
+                Description = command.Description,
+                Price = command.Price,
+                StatusId = (int)ProductCatalogStatus.Active,
+                CreatedAt = DateTime.UtcNow
             };
 
             await _productRepository.AddAsync(product);
