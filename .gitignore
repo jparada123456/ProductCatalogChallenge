@@ -21,6 +21,9 @@ obj/
 # Ignorar carpetas de paquetes NuGet
 packages/
 
+# Ignorar carpetas de migraciones
+migrations/
+
 # Ignorar archivos de configuración de entorno de desarrollo
 .vscode/
 .idea/
