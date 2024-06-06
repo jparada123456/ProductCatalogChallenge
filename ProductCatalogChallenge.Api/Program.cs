@@ -6,12 +6,8 @@ using ProductCatalogChallenge.Domain.Interfaces;
 using ProductCatalogChallenge.Infraestructure;
 using ProductCatalogChallenge.Infraestructure.Repositories;
 using MediatR;
-using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
 using ProductCatalogChallenge.Application.Interfaces;
 using ProductCatalogChallenge.Domain.Entities;
-using Microsoft.AspNetCore.Hosting;
-using System;
 using ProductCatalogChallenge.Infraestructure.Seeds;
 using Serilog;
 using Serilog.Events;
@@ -48,6 +44,24 @@ namespace ProductCatalogChallenge.Api
                 //Connection string configuration
                 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
+
+                // Add  Cache
+                builder.Services.AddMemoryCache();
+                //builder.Services.AddStackExchangeRedisCache(options =>
+                //{
+                //    options.Configuration = builder.Configuration.GetConnectionString("RedisConnectionString");
+                //});
+
+                // Register MediatR
+                builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
+                    typeof(Program).Assembly,
+                    typeof(CreateProductCommand).Assembly,  // Ensure all relevant assemblies are scanned
+                    typeof(UpdateProductCommand).Assembly,
+                    typeof(GetAllProductsQuery).Assembly,
+                    typeof(GetProductByIdQuery).Assembly
+                ));
+
+
                 //Repositories configutarion
                 builder.Services.AddScoped(typeof(IReadRepository<>), typeof(GenericRepository<>));
                 builder.Services.AddScoped(typeof(IWriteRepository<>), typeof(GenericRepository<>));
@@ -58,14 +72,16 @@ namespace ProductCatalogChallenge.Api
                 builder.Services.AddScoped<IQueryHandler<GetAllProductsQuery, IEnumerable<Product>>, GetAllProductsQueryHandler>();
                 builder.Services.AddScoped<IQueryHandler<GetProductByIdQuery, Product>, GetProductByIdQueryHandler>();
 
+
                 // Decorator registration
                 builder.Services.Decorate<ICommandHandler<CreateProductCommand, int>, LoggingCommandHandlerDecorator<CreateProductCommand, int>>();
                 builder.Services.Decorate<ICommandHandler<UpdateProductCommand, bool>, LoggingCommandHandlerDecorator<UpdateProductCommand, bool>>();
                 builder.Services.Decorate<IQueryHandler<GetAllProductsQuery, IEnumerable<Product>>, LoggingQueryHandlerDecorator<GetAllProductsQuery, IEnumerable<Product>>>();
                 builder.Services.Decorate<IQueryHandler<GetProductByIdQuery, Product>, LoggingQueryHandlerDecorator<GetProductByIdQuery, Product>>();
 
-
-
+                builder.Services.Decorate<IQueryHandler<GetAllProductsQuery, IEnumerable<Product>>, CachingQueryHandlerDecorator<GetAllProductsQuery, IEnumerable<Product>>>();
+                builder.Services.Decorate<IQueryHandler<GetProductByIdQuery, Product>, CachingQueryHandlerDecorator<GetProductByIdQuery, Product>>();
+                
                 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
                 builder.Services.AddEndpointsApiExplorer();
                 builder.Services.AddSwaggerGen();
