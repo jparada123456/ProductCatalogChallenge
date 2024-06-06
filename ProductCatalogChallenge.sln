@@ -11,17 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Infraestructure", "3.Infr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Api", "4.Api", "{430D8E7C-F471-4EB4-9983-A3ABE003F212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalogChallenge.Domain", "ProductCatalogChallenge.Domain\ProductCatalogChallenge.Domain.csproj", "{49F9B77B-D110-4238-962D-E7EBF19A812F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogChallenge.Domain", "ProductCatalogChallenge.Domain\ProductCatalogChallenge.Domain.csproj", "{49F9B77B-D110-4238-962D-E7EBF19A812F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalogChallenge.Application", "ProductCatalogChallenge.Application\ProductCatalogChallenge.Application.csproj", "{BC53D2F9-B5A1-468E-977A-22A0ACD09E59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogChallenge.Application", "ProductCatalogChallenge.Application\ProductCatalogChallenge.Application.csproj", "{BC53D2F9-B5A1-468E-977A-22A0ACD09E59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalogChallenge.Infraestructure", "ProductCatalogChallenge.Infraestructure\ProductCatalogChallenge.Infraestructure.csproj", "{A780D52F-3EA9-45BA-B133-EAD302A0B4C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogChallenge.Infraestructure", "ProductCatalogChallenge.Infraestructure\ProductCatalogChallenge.Infraestructure.csproj", "{A780D52F-3EA9-45BA-B133-EAD302A0B4C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalogChallenge.Api", "ProductCatalogChallenge.Api\ProductCatalogChallenge.Api.csproj", "{124CA36E-AE71-4A70-AFE2-F2438F4BEC43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogChallenge.Api", "ProductCatalogChallenge.Api\ProductCatalogChallenge.Api.csproj", "{124CA36E-AE71-4A70-AFE2-F2438F4BEC43}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Tests", "5.Tests", "{97BEF9A2-465C-486A-8E79-C7EC2D2A7545}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalogChallenge.Tests", "ProductCatalogChallenge.Tests\ProductCatalogChallenge.Tests.csproj", "{2401259A-EC24-49B0-9803-9557642B8C3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalogChallenge.Tests", "ProductCatalogChallenge.Tests\ProductCatalogChallenge.Tests.csproj", "{2401259A-EC24-49B0-9803-9557642B8C3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
