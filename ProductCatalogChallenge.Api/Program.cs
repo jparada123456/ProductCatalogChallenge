@@ -16,6 +16,7 @@ using ProductCatalogChallenge.Infraestructure.Seeds;
 using Serilog;
 using Serilog.Events;
 using ProductCatalogChallenge.Application.Decorators;
+using ProductCatalogChallenge.Api.Mappings;
 
 namespace ProductCatalogChallenge.Api
 {
@@ -41,6 +42,9 @@ namespace ProductCatalogChallenge.Api
 
                 builder.Services.AddControllers();
 
+                // Register AutoMapper
+                builder.Services.AddAutoMapper(typeof(MappingProfile));
+
                 //Connection string configuration
                 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
@@ -57,8 +61,8 @@ namespace ProductCatalogChallenge.Api
                 // Decorator registration
                 builder.Services.Decorate<ICommandHandler<CreateProductCommand, int>, LoggingCommandHandlerDecorator<CreateProductCommand, int>>();
                 builder.Services.Decorate<ICommandHandler<UpdateProductCommand, bool>, LoggingCommandHandlerDecorator<UpdateProductCommand, bool>>();
-                //builder.Services.Decorate<IQueryHandler<GetAllProductsQuery, IEnumerable<Product>>, LoggingQueryHandlerDecorator<GetAllProductsQuery, IEnumerable<Product>>>();
-                //builder.Services.Decorate<IQueryHandler<GetProductByIdQuery, Product>, LoggingQueryHandlerDecorator<GetProductByIdQuery, Product>>();
+                builder.Services.Decorate<IQueryHandler<GetAllProductsQuery, IEnumerable<Product>>, LoggingQueryHandlerDecorator<GetAllProductsQuery, IEnumerable<Product>>>();
+                builder.Services.Decorate<IQueryHandler<GetProductByIdQuery, Product>, LoggingQueryHandlerDecorator<GetProductByIdQuery, Product>>();
 
 
 
